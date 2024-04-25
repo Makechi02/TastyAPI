@@ -1,0 +1,6 @@
+spring:
+    data:
+        mongodb:
+            database: "tasty_api"
+            port: 27017
+            host: localhost
