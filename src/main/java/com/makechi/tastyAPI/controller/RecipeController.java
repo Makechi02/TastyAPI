@@ -1,5 +1,6 @@
 package com.makechi.tastyAPI.controller;
 
+import com.makechi.tastyAPI.constants.DifficultyLevel;
 import com.makechi.tastyAPI.entity.Recipe;
 import com.makechi.tastyAPI.service.RecipeService;
 import lombok.RequiredArgsConstructor;
@@ -40,5 +41,30 @@ public class RecipeController {
 	public ResponseEntity<String> deleteRecipeById(@PathVariable String recipeID) {
 		String response = recipeService.deleteRecipeById(recipeID);
 	 	return ResponseEntity.ok(response);
+	}
+
+	@GetMapping("/search/title")
+	public List<Recipe> searchRecipesByTitle(@RequestParam String title) {
+		return recipeService.searchRecipesByTitle(title);
+	}
+
+	@GetMapping("/search/keywords")
+	public List<Recipe> searchRecipesByKeywords(@RequestParam List<String> keywords) {
+		return recipeService.searchRecipesByKeywords(keywords);
+	}
+
+	@GetMapping("/filter/cuisine")
+	public List<Recipe> filterRecipesByCuisine(@RequestParam String cuisine) {
+		return recipeService.filterRecipesByCuisine(cuisine);
+	}
+
+	@GetMapping("/filter/diet")
+	public List<Recipe> filterRecipesByDiet(@RequestParam String diet) {
+		return recipeService.filterRecipesByDiet(diet);
+	}
+
+	@GetMapping("/filter/difficulty")
+	public List<Recipe> filterRecipesByDifficulty(@RequestParam DifficultyLevel difficulty) {
+		return recipeService.filterRecipesByDifficulty(difficulty);
 	}
 }
